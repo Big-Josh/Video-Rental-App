@@ -9,12 +9,18 @@ const app = express();
 
 app.use(express.json());
 app.use(helmet())
-app.use(morgan())
 app.use(express.urlencoded());
 app.use(express.static('public'));
 //app.use(logger);
 //app.use(authenticator);
 
+console.log(`NODE ENV : ${process.env.NODE_ENV}`);
+console.log(`app : ${app.get('env')}`)
+
+if (app.get('env') === 'development'){
+    app.use(morgan('tiny'));
+    console.log('Morgan is enabled')
+}
 
 const courses = [
     {id :1, name : 'course1'},
