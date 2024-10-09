@@ -1,3 +1,5 @@
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 const Joi = require('joi')
 const express = require('express')
 const helmet = require('helmet')
@@ -19,7 +21,7 @@ console.log(`app : ${app.get('env')}`)
 
 if (app.get('env') === 'development'){
     app.use(morgan('tiny'));
-    console.log('Morgan is enabled')
+    startupDebugger('Morgan is enabled')
 }
 
 const courses = [
